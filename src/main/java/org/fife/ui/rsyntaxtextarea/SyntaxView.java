@@ -664,7 +664,6 @@ if (host.isCodeFoldingEnabled()) {
 	 */
 	@Override
 	public void paint(Graphics g, Shape a) {
-
 		RSyntaxDocument document = (RSyntaxDocument)getDocument();
 
 		Rectangle alloc = a.getBounds();

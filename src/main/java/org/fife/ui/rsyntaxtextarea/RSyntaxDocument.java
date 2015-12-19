@@ -128,19 +128,20 @@ public class RSyntaxDocument extends RDocument implements Iterable<Token>,
 	 */
 	@Override
 	protected void fireInsertUpdate(DocumentEvent e) {
-
+		
 		cachedTokenList = null;
-
+		
 		/*
 		 * Now that the text is actually inserted into the content and
 		 * element structure, we can update our token elements and "last
 		 * tokens on lines" structure.
 		 */
-
+		
 		Element lineMap = getDefaultRootElement();
 		DocumentEvent.ElementChange change = e.getChange(lineMap);
 		Element[] added = change==null ? null : change.getChildrenAdded();
 
+		
 		int numLines = lineMap.getElementCount();
 		int line = lineMap.getElementIndex(e.getOffset());
 		int previousLine = line - 1;
@@ -159,7 +160,7 @@ public class RSyntaxDocument extends RDocument implements Iterable<Token>,
 			for (int i=line; i<endBefore; i++) {
 
 				setSharedSegment(i); // Loads line i's text into s.
-
+				
 				int tokenType = tokenMaker.getLastTokenTypeOnLine(s, previousTokenType);
 				lastTokensOnLines.add(i, tokenType);
 				//System.err.println("--------- lastTokensOnLines.size() == " + lastTokensOnLines.getSize());
@@ -203,7 +204,7 @@ public class RSyntaxDocument extends RDocument implements Iterable<Token>,
 	 */
 	@Override
 	protected void fireRemoveUpdate(DocumentEvent chng) {
-
+		
 		cachedTokenList =  null;
 		Element lineMap = getDefaultRootElement();
 		int numLines = lineMap.getElementCount();
@@ -397,7 +398,7 @@ public class RSyntaxDocument extends RDocument implements Iterable<Token>,
 	 * @return A token list representing the specified line.
 	 */
 	public final Token getTokenListForLine(int line) {
-
+		
 		tokenRetrievalCount++;
 		if (line==lastLine && cachedTokenList!=null) {
 			if (DEBUG_TOKEN_CACHING) {
@@ -423,13 +424,12 @@ public class RSyntaxDocument extends RDocument implements Iterable<Token>,
 		}
 		int initialTokenType = line==0 ? Token.NULL :
 								getLastTokenTypeOnLine(line-1);
-
+		
 		//return tokenMaker.getTokenList(s, initialTokenType, startOffset);
 		cachedTokenList = tokenMaker.getTokenList(s, initialTokenType, startOffset);
 		return cachedTokenList;
 
 	}
-
 
 	boolean insertBreakSpecialHandling(ActionEvent e) {
 		Action a = tokenMaker.getInsertBreakAction();
@@ -586,7 +586,6 @@ public class RSyntaxDocument extends RDocument implements Iterable<Token>,
 	 * @return The last line that needs repainting.
 	 */
 	private int updateLastTokensBelow(int line, int numLines, int previousTokenType) {
-
 		int firstLine = line;
 
 		// Loop through all lines past our starting point.  Update even the last

@@ -107,6 +107,7 @@ public class TokenMap {
 		return get(text.array, start, end);
 	}
 
+	
 
 	/**
 	 * Returns the token type associated with the given text, if the given

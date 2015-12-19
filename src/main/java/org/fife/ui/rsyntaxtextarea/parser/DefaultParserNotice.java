@@ -33,8 +33,8 @@ public class DefaultParserNotice implements ParserNotice {
 	private String toolTipText;
 
 	private static final Color[] DEFAULT_COLORS = {
-		new Color(255, 0, 128),		// Error
-		new Color(244, 200, 45),	// Warning
+		Color.red,		// Error
+		Color.blue,	// Warning
 		Color.gray,					// Info
 	};
 
