@@ -142,7 +142,7 @@ class ParserManager implements DocumentListener, ActionListener,
 		}
 
 		RSyntaxDocument doc = (RSyntaxDocument)textArea.getDocument();
-
+		
 		Element root = doc.getDefaultRootElement();
 		int firstLine = firstOffsetModded==null ? 0 : root.getElementIndex(firstOffsetModded.getOffset());
 		int lastLine = lastOffsetModded==null ? root.getElementCount()-1 : root.getElementIndex(lastOffsetModded.getOffset());
