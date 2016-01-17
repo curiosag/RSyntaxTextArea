@@ -3,6 +3,7 @@ bin
 dist
 javadoc
 rsyntaxtextarea_*.zip
+*.class
 *.java~
 build
 .gradle
